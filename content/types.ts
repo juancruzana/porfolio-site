@@ -29,7 +29,8 @@ export type Content = {
   education: {
     title: string
     columns: { year: string; school: string; degree: string }
-    items: { years: string; school: string; location: string; degree: string; field: string }[]
+    /** `field` es opcional: el secundario no lo lleva. */
+    items: { years: string; school: string; location: string; degree: string; field?: string }[]
   }
   about: {
     title: string

@@ -72,6 +72,12 @@ export const en: Content = {
         degree: 'Language Course',
         field: 'English',
       },
+      {
+        years: '2018 – 2023',
+        school: 'Instituto Nuestra Señora del Rosario',
+        location: 'Mendoza, Argentina',
+        degree: 'High School Diploma',
+      },
     ],
   },
   about: {

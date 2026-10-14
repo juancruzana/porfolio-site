@@ -69,6 +69,12 @@ export const es: Content = {
         degree: 'Curso de idioma',
         field: 'Inglés',
       },
+      {
+        years: '2018 – 2023',
+        school: 'Instituto Nuestra Señora del Rosario',
+        location: 'Mendoza, Argentina',
+        degree: 'Título secundario',
+      },
     ],
   },
   about: {

@@ -39,7 +39,7 @@ export function Education({ c }: { c: Content['education'] }) {
                   </th>
                   <td className="px-3 py-4 align-top sm:px-5">
                     <span className="block font-semibold leading-snug">{item.degree}</span>
-                    <span className="mt-1 block text-caption text-muted">{item.field}</span>
+                    {item.field && <span className="mt-1 block text-caption text-muted">{item.field}</span>}
                   </td>
                 </tr>
               ))}
