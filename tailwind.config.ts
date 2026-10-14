@@ -1,52 +1,40 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss'
 
 const config: Config = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
   theme: {
     extend: {
-      fontFamily: {
-        mono: ["JetBrains Mono", "monospace"],
-        sans: ["DM Sans", "sans-serif"],
-        display: ["Syne", "sans-serif"],
-      },
+      // Los valores viven en app/globals.css (:root); acá solo se exponen como utilidades.
       colors: {
-        bg: "#060608",
-        bg2: "#0d0f12",
-        bg3: "#13161b",
-        accent: "#00e5a0",
-        accent2: "#7b6ff0",
-        danger: "#ff5f6d",
+        paper: 'var(--paper)',
+        ink: 'var(--ink)',
+        muted: 'var(--muted)',
+        orange: 'var(--orange)',
+        yellow: 'var(--yellow)',
+        blue: 'var(--blue)',
       },
-      animation: {
-        blink: "blink 1s step-end infinite",
-        pulse2: "pulse2 2s ease infinite",
-        slideUp: "slideUp 0.5s ease 1.5s both",
-        fadeIn: "fadeIn 0.7s ease both",
+      fontFamily: {
+        display: ['var(--font-display)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-body)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
-      keyframes: {
-        blink: {
-          "0%,100%": { opacity: "1" },
-          "50%": { opacity: "0" },
-        },
-        pulse2: {
-          "0%,100%": { boxShadow: "0 0 0 0 rgba(0,229,160,0.4)" },
-          "50%": { boxShadow: "0 0 0 6px rgba(0,229,160,0)" },
-        },
-        slideUp: {
-          from: { opacity: "0", transform: "translateY(20px)" },
-          to: { opacity: "1", transform: "translateY(0)" },
-        },
-        fadeIn: {
-          from: { opacity: "0", transform: "translateY(24px)" },
-          to: { opacity: "1", transform: "translateY(0)" },
-        },
+      // Escala de 5 tamaños: hero, sección, subtítulo, cuerpo, caption.
+      fontSize: {
+        hero: ['clamp(3rem, 9vw, 6.5rem)', { lineHeight: '0.9', letterSpacing: '-0.035em' }],
+        section: ['clamp(2rem, 4.5vw, 3.25rem)', { lineHeight: '1', letterSpacing: '-0.025em' }],
+        sub: ['clamp(1.125rem, 2vw, 1.375rem)', { lineHeight: '1.35', letterSpacing: '-0.01em' }],
+        body: ['1.0625rem', { lineHeight: '1.7' }],
+        caption: ['0.8125rem', { lineHeight: '1.45', letterSpacing: '0.02em' }],
       },
+      borderWidth: { 3: '3px' },
+      borderRadius: { brutal: 'var(--radius)' },
+      boxShadow: {
+        brutal: 'var(--shadow) var(--shadow) 0 var(--ink)',
+        'brutal-sm': '3px 3px 0 var(--ink)',
+      },
+      maxWidth: { copy: '42.5rem' }, // ~680px: columna de las fichas técnicas
     },
   },
   plugins: [],
-};
-export default config;
+}
+
+export default config

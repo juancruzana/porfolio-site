@@ -1,0 +1,11 @@
+# Dependencias y builds
+node_modules
+.next
+*.tsbuildinfo
+
+# Link local con el proyecto de Vercel
+.vercel
+
+# Variables de entorno: nunca al repo, salvo el ejemplo
+.env*
+!.env.example

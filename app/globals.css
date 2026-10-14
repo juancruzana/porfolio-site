@@ -1,100 +1,274 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ── Tokens (README §5) ─────────────────────────────────────────── */
 :root {
-  --bg: #060608;
-  --bg2: #0d0f12;
-  --bg3: #13161b;
-  --accent: #00e5a0;
-  --accent2: #7b6ff0;
-  --text: #e8eaf0;
-  --muted: #6b7280;
-  --border: rgba(255, 255, 255, 0.06);
+  --paper: #fff4e0; /* fondo crema */
+  --ink: #111111; /* texto, bordes, sombras */
+  --muted: #5c554b; /* texto secundario (AA sobre --paper) */
+  --orange: #ff6b1a; /* acento principal: CTA, links, estado activo */
+  --yellow: #ffd23f; /* fondos de sticker, highlights */
+  --blue: #3d5afe; /* uso puntual: anillo de foco */
+
+  --border: 3px;
+  --shadow: 6px;
+  --radius: 14px;
+
+  /* Spring para hover y press, en CSS: misma sensación que un spring de Motion, cero JS. */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-html {
-  scroll-behavior: smooth;
+@supports (transition-timing-function: linear(0, 1)) {
+  :root {
+    --ease-spring: linear(
+      0, 0.009, 0.035 2.1%, 0.141, 0.281 6.7%, 0.723 12.9%, 0.938 16.7%, 1.017, 1.077, 1.121,
+      1.149 24.3%, 1.159, 1.163, 1.161, 1.154 29.9%, 1.129 32.8%, 1.051 39.6%, 1.017 43.1%, 0.991,
+      0.977 51%, 0.974 53.8%, 0.975 57.1%, 0.997 69.8%, 1.003 76.9%, 1.004 83.8%, 1
+    );
+  }
 }
 
-body {
-  background-color: var(--bg);
-  color: var(--text);
-  font-family: 'DM Sans', sans-serif;
-  overflow-x: hidden;
+@layer base {
+  html {
+    background-color: var(--paper);
+    color: var(--ink);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    /* clip y no hidden: hidden convierte al body en contenedor de scroll y rompe el sticky. */
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 800;
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--yellow);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--blue);
+    outline-offset: 3px;
+  }
+
+  [id] {
+    scroll-margin-top: 1.5rem;
+  }
 }
 
-/* Grid background */
-.grid-bg {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image:
-    linear-gradient(rgba(0, 229, 160, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 229, 160, 0.025) 1px, transparent 1px);
-  background-size: 60px 60px;
+@layer components {
+  /* Objetos: borde negro grueso + sombra dura desplazada, sin blur. */
+  .brutal {
+    border: var(--border) solid var(--ink);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow) var(--shadow) 0 var(--ink);
+    transition:
+      translate 150ms ease,
+      box-shadow 150ms ease;
+  }
+
+  /* "Se aprieta" hacia la sombra. Usa `translate` y no `transform` para no pisar .reveal ni las rotaciones. */
+  .brutal-interactive:focus-visible {
+    translate: 3px 3px;
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+  @media (hover: hover) {
+    .brutal-interactive:hover {
+      translate: 3px 3px;
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+  }
+  .brutal-interactive:active {
+    translate: var(--shadow) var(--shadow);
+    box-shadow: 0 0 0 var(--ink);
+  }
+
+  /* Links: tinta con subrayado grueso naranja (el naranja nunca es color de texto). */
+  .link {
+    color: var(--ink);
+    font-weight: 600;
+    text-decoration-line: underline;
+    text-decoration-color: var(--orange);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.22em;
+    transition:
+      background-color 150ms ease,
+      text-decoration-color 150ms ease;
+  }
+  .link:hover {
+    background-color: var(--yellow);
+    text-decoration-color: var(--ink);
+  }
+
+  /* Stickers: decorativos, levemente rotados. Única pieza que se mueve con spring en hover. */
+  .sticker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.35em 0.9em;
+    border: var(--border) solid var(--ink);
+    border-radius: 999px;
+    background-color: var(--yellow);
+    color: var(--ink);
+    box-shadow: 3px 3px 0 var(--ink);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    rotate: -2deg;
+    transition:
+      rotate 700ms var(--ease-spring),
+      scale 700ms var(--ease-spring);
+  }
+  .sticker--right {
+    rotate: 2deg;
+  }
+  @media (hover: hover) {
+    .sticker:hover {
+      rotate: 0deg;
+      scale: 1.06;
+    }
+  }
+
+  .chip {
+    display: inline-block;
+    padding: 0.15em 0.7em;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.6;
+  }
+
+  /* Marco de las capturas: barrita dibujada con tres círculos, en lugar de mockup de laptop. */
+  .frame {
+    overflow: hidden;
+    background-color: var(--paper);
+  }
+  .frame__bar {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.6rem 0.75rem;
+    border-bottom: var(--border) solid var(--ink);
+  }
+  .frame__bar > span {
+    width: 0.8rem;
+    height: 0.8rem;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+  }
+  .frame__bar > span:nth-child(1) {
+    background-color: var(--orange);
+  }
+  .frame__bar > span:nth-child(2) {
+    background-color: var(--yellow);
+  }
 }
 
-/* Typing cursor */
-.cursor {
-  display: inline-block;
-  width: 2px;
-  height: 1.2em;
-  background: var(--accent2);
-  animation: blink 1s step-end infinite;
-  margin-left: 2px;
-  vertical-align: middle;
+/* ── Movimiento (README §6) ─────────────────────────────────────── */
+
+/* 6.1 Reveals: CSS nativo, sin JS. Sin soporte (Firefox) el contenido aparece sin animación. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px) rotate(-1deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+/* 6.2 Marquee. Cada grupo mide al menos el ancho de la pantalla, así el loop no deja huecos. */
+.marquee {
+  display: flex;
+  border-block: var(--border) solid var(--ink);
+  background-color: var(--yellow);
 }
-
-/* Toast pulse dot */
-.toast-dot {
-  animation: pulse2 2s ease infinite;
+.marquee__viewport {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
 }
-
-@keyframes pulse2 {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 229, 160, 0.4); }
-  50% { box-shadow: 0 0 0 6px rgba(0, 229, 160, 0); }
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
 }
-
-/* Project card top-border reveal */
-.proj-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  opacity: 0;
-  transition: opacity 0.2s;
+.marquee__group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-around;
+  min-width: 100vw;
 }
-
-.proj-card:hover::before {
-  opacity: 1;
+.marquee:hover .marquee__track,
+.marquee.is-paused .marquee__track {
+  animation-play-state: paused;
 }
-
-/* Experience timeline line */
-.exp-line {
-  position: absolute;
-  left: 160px;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: var(--border);
-  transform: translateX(-50%);
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
 }
-
-@media (max-width: 768px) {
-  .exp-line,
-  .exp-dot-el {
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track {
+    width: auto;
+    animation: none;
+  }
+  .marquee__group {
+    min-width: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .marquee__group + .marquee__group,
+  .marquee__toggle {
     display: none;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    transition-duration: 0.01ms !important;
   }
 }
