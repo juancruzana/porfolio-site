@@ -1,5 +1,5 @@
 import type { Content } from '@/content'
-import { Arrow } from '@/components/icons'
+import { Arrow, BrandIcon } from '@/components/icons'
 
 // El único CTA dominante del sitio: el mail.
 export function Contact({ c }: { c: Content['contact'] }) {
@@ -27,6 +27,7 @@ export function Contact({ c }: { c: Content['contact'] }) {
                 rel="noreferrer"
                 className="link inline-flex items-center gap-1.5 decoration-ink hover:bg-paper"
               >
+                <BrandIcon brand={link.icon} className="shrink-0 text-[1.15em]" />
                 {link.label}
                 <Arrow direction="up-right" />
               </a>

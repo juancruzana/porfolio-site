@@ -32,7 +32,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       >
         {c.skipToContent}
       </a>
-      <Nav locale={locale} c={c.nav} />
+      <Nav locale={locale} c={c.nav} social={c.contact.links} />
       <main id="main">
         <Hero c={c.hero} aside={<DataStrip c={c.dataStrip} />} />
         <Marquee c={c.marquee} />

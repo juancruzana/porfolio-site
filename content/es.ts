@@ -84,7 +84,10 @@ export const es: Content = {
     title: 'Hablemos',
     intro: 'El mail es la forma más rápida de contactarme.',
     email: 'soyjuancruzana@gmail.com',
-    links: [{ label: 'GitHub', href: 'https://github.com/juancruzana' }],
+    links: [
+      { label: 'LinkedIn', href: 'https://www.linkedin.com/in/juancruzana', icon: 'linkedin' },
+      { label: 'GitHub', href: 'https://github.com/juancruzana', icon: 'github' },
+    ],
   },
   footer: { location: 'Mendoza, Argentina' },
 }

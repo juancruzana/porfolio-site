@@ -90,8 +90,10 @@ export const en: Content = {
     title: 'Let’s talk',
     intro: 'Email is the fastest way to reach me.',
     email: 'soyjuancruzana@gmail.com',
-    // TODO: LinkedIn (la URL no está en el repo).
-    links: [{ label: 'GitHub', href: 'https://github.com/juancruzana' }],
+    links: [
+      { label: 'LinkedIn', href: 'https://www.linkedin.com/in/juancruzana', icon: 'linkedin' },
+      { label: 'GitHub', href: 'https://github.com/juancruzana', icon: 'github' },
+    ],
   },
   footer: { location: 'Mendoza, Argentina' },
 }

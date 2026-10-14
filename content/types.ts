@@ -1,5 +1,8 @@
 export type Link = { label: string; href: string }
 
+/** Perfil externo con logo: se muestra en el nav (solo ícono) y en Contacto (ícono + texto). */
+export type SocialLink = Link & { icon: 'github' | 'linkedin' }
+
 export type Content = {
   meta: { title: string; description: string; ogLocale: string }
   skipToContent: string
@@ -38,7 +41,7 @@ export type Content = {
     title: string
     intro: string
     email: string
-    links: Link[]
+    links: SocialLink[]
   }
   footer: { location: string }
 }

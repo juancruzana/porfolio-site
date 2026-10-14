@@ -33,7 +33,7 @@ export const seedProjects: ProjectRow[] = [
     image_alt_en: 'Sellos Ana home page: the headline “Arte que deja su marca”, a short pitch and the catalog button.',
     image_alt_es: 'Inicio de Sellos Ana: el título “Arte que deja su marca”, una presentación breve y el botón al catálogo.',
     repo_url: null,
-    live_url: null,
+    live_url: 'https://www.anaregalos.com.ar/',
   },
   {
     id: 'post-sale-automation',

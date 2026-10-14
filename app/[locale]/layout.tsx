@@ -46,6 +46,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: c.meta.description,
       locale: c.meta.ogLocale,
     },
+    // La imagen sale de opengraph-image.tsx; con esto X/Twitter también la muestra grande.
+    twitter: { card: 'summary_large_image' },
   }
 }
 
