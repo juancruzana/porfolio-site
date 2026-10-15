@@ -17,16 +17,16 @@ export const en: Content = {
   nav: {
     home: 'Juan Cruz Ana, back to top',
     language: 'Language',
-    links: { work: 'Work', education: 'Education', about: 'About', contact: 'Contact' },
+    links: { work: 'Work', experience: 'Experience', education: 'Education', about: 'About', contact: 'Contact' },
   },
   hero: {
     sticker: 'Full-stack developer',
     firstName: 'Juan Cruz',
     lastName: 'Ana',
     tagline:
-      'I build the systems behind an order: the catalog, the checkout and everything that happens after the sale.',
+      'I turn ideas into products that work, from analysis to production.',
     intro:
-      'Software development student at UTN Mendoza. Below are the projects I’ve built, the stack behind each one and where I studied.',
+      'Currently freelance and CEO of my own projects. When you need creative ideas, product analysis, smart solutions and adaptability, that’s where I add the most value.',
     cue: 'See the work',
   },
   marquee: {
@@ -38,8 +38,8 @@ export const en: Content = {
     label: 'Key facts',
     items: [
       // TODO README §11.1: "2" si Food Store está desplegado, "1" si no.
-      { value: '+2', label: 'projects live in production' },
-      { value: '2023', label: 'building for real clients since' },
+      { value: '+2', label: 'projects live in production', href: 'https://github.com/juancruzana' },
+      { value: '2023', label: 'building for real clients since', href: 'https://www.linkedin.com/in/juancruzana' },
       { value: 'C1', label: 'English level' },
     ],
   },
@@ -47,12 +47,32 @@ export const en: Content = {
     title: 'Work',
     labels: { repo: 'Repository', live: 'Live site' },
   },
+  experience: {
+    title: 'Experience',
+    items: [
+      {
+        years: '2025 – Present',
+        role: 'Freelance Full Stack Developer',
+        company: 'Self-employed',
+        location: 'Mendoza, Argentina',
+        description: 'End-to-end projects for real clients, from scoping to production.',
+      },
+      {
+        years: 'Apr – Sep 2025',
+        role: 'Frontend Developer',
+        company: 'RST, Salud Tecnológica Argentina',
+        location: 'Hybrid',
+        description:
+          'Built and maintained interfaces for health-tech products with React, TypeScript and TailwindCSS, integrated with REST APIs.',
+      },
+    ],
+  },
   education: {
     title: 'Education',
     columns: { year: 'Year', school: 'School', degree: 'Degree' },
     items: [
       {
-        years: 'Ongoing',
+        years: '2024 – 2027',
         school: 'Universidad Tecnológica Nacional',
         location: 'Mendoza, Argentina',
         degree: 'Technical Degree',
@@ -61,6 +81,7 @@ export const en: Content = {
       {
         years: '2024',
         school: 'CoderHouse',
+        href: '/certificates/DataScienceCertificates.pdf',
         location: 'Online',
         degree: 'Data Science Course',
         field: 'Data Science',
@@ -68,6 +89,7 @@ export const en: Content = {
       {
         years: '2019 – 2023',
         school: 'AMICANA Institute',
+        href: '/certificates/EnglishCourseCerficateAMICANA.pdf',
         location: 'Mendoza, Argentina',
         degree: 'Language Course',
         field: 'English',
@@ -83,10 +105,11 @@ export const en: Content = {
   about: {
     title: 'About',
     paragraphs: [
-      'I’m Juan Cruz. I study software development at UTN FRM in Mendoza, Argentina, where I’m finishing my final degree project on post-sale automation. In 2024 I took a data science course at CoderHouse and started building software for real clients.',
+      'I’m Juan Cruz, a full-stack developer with a university degree in Programming (UTN FRM, Mendoza). Since 2024 I’ve been building software for clients who use it every day: catalogs, ordering platforms with payments, and process automation.',
+      'My strongest evidence is on the frontend (React, Next.js, strict TypeScript), but I deliver the whole system: FastAPI backends, PostgreSQL schemas, role-based access control, payments and real-time updates. What I pay most attention to is the seams between layers, which is where the hard failures live.',
       // README §11.9: el único empleo formal no puede quedar solo en el CV.
-      'Before that, I built frontend interfaces for a health-tech network in Mendoza.',
-      'I have EU work authorization, I work in English at C1 level, I speak basic German, and I’m open to remote roles and relocation.',
+      'Before that I worked at RST Argentina, building interfaces for digital health platforms. My final project was a post-sale automation system on n8n, formally audited.',
+      'I hold Italian citizenship, so I can work anywhere in the EU without sponsorship. I work in English at C1, speak basic German, and I’m looking for a remote role on an international team or a position in Europe.',
     ],
     facts: ['UTN FRM', 'CoderHouse · Data Science', 'English C1', 'Basic German', 'EU work authorization'],
     // TODO README §11.7 — cuando exista public/cv/juan-cruz-ana-cv.pdf:

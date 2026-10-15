@@ -38,7 +38,15 @@ export function Education({ c }: { c: Content['education'] }) {
                     <span className="mt-1 block text-caption text-muted">{item.location}</span>
                   </th>
                   <td className="px-3 py-4 align-top sm:px-5">
-                    <span className="block font-semibold leading-snug">{item.degree}</span>
+                    <span className="block font-semibold leading-snug">
+                      {item.href ? (
+                        <a href={item.href} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline focus-visible:underline">
+                          {item.degree}
+                        </a>
+                      ) : (
+                        item.degree
+                      )}
+                    </span>
                     {item.field && <span className="mt-1 block text-caption text-muted">{item.field}</span>}
                   </td>
                 </tr>

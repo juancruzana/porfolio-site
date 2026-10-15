@@ -5,6 +5,7 @@ import { Hero } from '@/components/sections/Hero'
 import { Marquee } from '@/components/sections/Marquee'
 import { DataStrip } from '@/components/sections/DataStrip'
 import { Work } from '@/components/sections/Work'
+import { Experience } from '@/components/sections/Experience'
 import { Education } from '@/components/sections/Education'
 import { About } from '@/components/sections/About'
 import { Contact, Footer } from '@/components/sections/Contact'
@@ -37,6 +38,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         <Hero c={c.hero} aside={<DataStrip c={c.dataStrip} />} />
         <Marquee c={c.marquee} />
         <Work c={c.work} projects={projects} />
+        <Experience c={c.experience} />
         <Education c={c.education} />
         <About c={c.about} />
         <Contact c={c.contact} />

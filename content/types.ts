@@ -9,7 +9,7 @@ export type Content = {
   nav: {
     home: string
     language: string
-    links: { work: string; education: string; about: string; contact: string }
+    links: { work: string; experience: string; education: string; about: string; contact: string }
   }
   hero: {
     sticker: string
@@ -20,17 +20,22 @@ export type Content = {
     cue: string
   }
   marquee: { items: string[]; pause: string; play: string }
-  dataStrip: { label: string; items: { value: string; label: string }[] }
+  dataStrip: { label: string; items: { value: string; label: string; href?: string }[] }
   work: {
     title: string
     /** Los proyectos vienen de la base (lib/projects.ts); acá solo los textos fijos de la tarjeta. */
     labels: { repo: string; live: string }
   }
+  experience: {
+    title: string
+    /** Del más reciente al más antiguo. */
+    items: { years: string; role: string; company: string; location: string; description: string }[]
+  }
   education: {
     title: string
     columns: { year: string; school: string; degree: string }
     /** `field` es opcional: el secundario no lo lleva. */
-    items: { years: string; school: string; location: string; degree: string; field?: string }[]
+    items: { years: string; school: string; location: string; degree: string; field?: string; href?: string }[]
   }
   about: {
     title: string

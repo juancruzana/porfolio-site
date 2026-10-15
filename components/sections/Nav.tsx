@@ -7,6 +7,7 @@ import { LocaleSwitch } from './LocaleSwitch'
 export function Nav({ locale, c, social }: { locale: Locale; c: Content['nav']; social: SocialLink[] }) {
   const links = [
     { href: '#work', label: c.links.work },
+    { href: '#experience', label: c.links.experience },
     { href: '#education', label: c.links.education },
     { href: '#about', label: c.links.about },
     { href: '#contact', label: c.links.contact },
@@ -18,7 +19,7 @@ export function Nav({ locale, c, social }: { locale: Locale; c: Content['nav']; 
         <a href="#top" aria-label={c.home} className="mr-auto font-display font-extrabold text-xl tracking-tight sm:text-2xl">
           Juan Cruz Ana
         </a>
-        <ul className="order-last flex w-full gap-1 sm:order-none sm:w-auto">
+        <ul className="order-last flex w-full flex-wrap gap-1 sm:order-none sm:w-auto">
           {links.map((link) => (
             <li key={link.href}>
               <a
